@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="root-container">
+        <div class="header">
+            <button id="reverse" onclick="reverse();"> 
+                REVERSE
+            </button>
+            <button id="remove-symbols-numbers" onclick="removeSymbolsNumbers()"> 
+                REMOVE SYMBOLS & NUMBERS
+            </button>
+            <button id="sort-alphabetically" onclick="sortAlphabetically()"> 
+                SORT ALPHABETICALLLY
+            </button>
+            <button id="toggle-backgroundcolor" onclick="toggleBackgroundcolor()"> 
+                TOGGLE COLOR
+            </button>
+            <button id="random-color" onclick="randomColor()"> 
+                RANDOM COLOR
+            </button>
+            <button id="conver-to-inline" onclick="converToInline()">
+                CONVERT TO INLINE
+            </button>
+        </div>
+        <div class="main">
+            <div class="startups-container">
+
+            </div>
+
+        </div>
+        <div class="footer">
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<style>
+    .root-container {
+        position: relative;
+    }
+
+    .root-container .header {
+        position: relative;
+    }
+
+    .root-container .main {
+        position: relative;
+    }
+
+    .root-container .footer {
+        position: relative;
+    }
+
+    .startups-container {
+        background-color: gray;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .gold {
+        background-color: gold;
+    }
+</style>
+
+<script>
+    var colors = ['red', 'blue', 'gold'];
+    var chicagoStartupsHTML = [];
+    var chicagoStartups = [
+        '  Interior   Define  ',
+        'Classkick',
+        'teaBOT  .$',
+        'Pritzker Group Venture Capital',
+        'Teln!yx !!',
+        'ShipBob ~~$$$',
+        'Hologram',
+        'Tovala    ',
+        '    MANOR',
+        'ShuttleCloud 999987',
+        'gtrot @@@@@',
+        'DealsGoRound ****',
+        ' Groovebug',
+        'Stage$$$Bloc',
+        'Shiftgig',
+        'ParkWhiz'
+    ];
+    /*$(document).ready(function () {
+        $.each(chicagoStartups, function (index, startupName) {
+            chicagoStartupsHTML.push('<div>' + startupName + '</div>');
+        });
+        $(".startups-container").html(chicagoStartupsHTML.join(""));
+    });*/
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        chicagoStartups.forEach(function (startupName) {
+            //chicagoStartupsHTML.push('<div>' + startupName + '</div>');
+            document.getElementsByClassName('startups-container')[0].innerHTML+='<div>'+startupName+'</div>';
+        });
+    });
+
+    //Q1 --reverse
+    function reverse(){
+        chicagoStartups.reverse();
+        //chicagoStartupsHTML=[];
+        document.getElementsByClassName('startups-container')[0].innerHTML='';
+        chicagoStartups.forEach(function(startupName){
+            //chicagoStartupsHTML.push('<div>' + startupName + '</div>');
+            document.getElementsByClassName('startups-container')[0].innerHTML+='<div>'+startupName+'</div>';
+        });
+      
+        /*for (var i=0;i<chicagoStartupsHTML.length;i++){
+            document.getElementsByClassName('startups-container')[0].innerHTML+=chicagoStartupsHTML[i];
+        }*/
+        
+        
+    };
+
+    //Q2 --Rremove symbles and numbers
+    function removeSymbolsNumbers(){
+        //chicagoStartupsHTML=[];
+        document.getElementsByClassName('startups-container')[0].innerHTML='';
+        chicagoStartups.forEach(function (startupName){
+            newName=startupName.replace(/[0123456789@~!$*.]/g,'');
+            //chicagoStartupsHTML.push('<div>' + newName + '</div>');
+            document.getElementsByClassName('startups-container')[0].innerHTML+='<div>'+newName+'</div>';
+        });
+        //$(".startups-container").html(chicagoStartupsHTML.join(""));
+    };
+
+    //Q3 --sort in alphabetical order
+    function sortAlphabetically(){
+        chicagoStartupsHTML=[];
+        document.getElementsByClassName('startups-container')[0].innerHTML='';
+        chicagoStartups.forEach(function(startupName){
+            startupName=startupName.replace(/ /g,'')
+            chicagoStartupsHTML.push('<div>' + startupName.charAt(0).toUpperCase()+startupName.slice(1) + '</div>');
+        });
+        chicagoStartupsHTML.sort();
+        //$(".startups-container").html(chicagoStartupsHTML.join(""));
+        for (var i=0;i<chicagoStartupsHTML.length;i++){
+            document.getElementsByClassName('startups-container')[0].innerHTML+=chicagoStartupsHTML[i];
+        }
+    };
+
+
+    //Q4 --toggle background color on and off
+    function toggleBackgroundcolor(){
+        //console.log($(".startups-container").css("background-color")=='rgb(128, 128, 128)');
+        if (document.getElementsByClassName('startups-container')[0].style.backgroundColor=='gray'){
+            document.getElementsByClassName('startups-container')[0].style.backgroundColor='rgb(152,427,372)';
+        }else{
+            document.getElementsByClassName('startups-container')[0].style.backgroundColor='gray';
+        }
+        //rgb(128, 128, 128)
+    };
+
+    //Q5 --random color for each companies
+    function randomColor(){
+        //chicagoStartupsHTML=[];
+        document.getElementsByClassName('startups-container')[0].innerHTML='';
+        chicagoStartups.forEach(function(startupName){
+            randomNum=Math.floor(Math.random()*3);
+            //chicagoStartupsHTML.push("<div style='color:"+colors[randomNum]+"';>" + startupName + "</div>");
+            document.getElementsByClassName('startups-container')[0].innerHTML+="<div style='color:"+colors[randomNum]+"';>" + startupName + "</div>";
+        });
+        //$(".startups-container").html(chicagoStartupsHTML.join(""));
+    };
+
+
+    //Q6 --convert to inline elements
+    function converToInline(){
+        //chicagoStartupsHTML=[];
+        document.getElementsByClassName('startups-container')[0].innerHTML='';
+        chicagoStartups.forEach(function(startupName){
+            //chicagoStartupsHTML.push("<div style='display:inline';>" + startupName + "</div>");
+            document.getElementsByClassName('startups-container')[0].innerHTML+="<div style='display:inline';>" + startupName + "</div>";
+        });
+        //$(".startups-container").html(chicagoStartupsHTML.join(""));
+    };
+
+    //HOMEWORK 2 PROBLEMS START
+    // 1.CREATE A FUNCTION THAT REVERSES THE LIST OF STARTUPS ON CLICK OF THE REVERSE BUTTON
+    // 2.CREATE A FUNCTION THAT REMOVES ALL SYMBOLS AND NUMBERS FROM COMPANY NAMES ON CLICK OF REMOVE SYMBOLS & NUMBERS BUTTON 
+    //   Stage$$$Bloc => StageBloc
+    // 3.CREATE A FUNCTION THAT SORTS STARTUPS IN ALPHABETICAL ORDER ON CLICK OF THE SORT BUTTON
+    // 4.CREATE A FUNCTION THAT TOGGLES THE BACKGROUND COLOR UPON CLICK OF THE TOGGLE COLOR BUTTON
+    // 5.CREATE A FUNCTION THAT RANDOMLY SELECTS A COLOR CLASS AND APPLIES IT TO EACH COMPANY NAME WHEN THE COLOR BUTTON IS CLICKED
+    // 6.CREATE A FUNCTION THAT DISPLAYS STARTS AS INLINE ELEMENTS ON CLICK OF CONVERT TO INLINE BUTTON
+    //HOMEWORK 2 PROBLEMS END
+
+</script>
